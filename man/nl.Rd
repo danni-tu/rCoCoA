@@ -6,9 +6,6 @@
 \usage{
 nl()
 }
-\value{
-Returns nothing except some spaces!!
-}
 \description{
 This function prints a new line in HTML files, which is useful when printing other things such as headers or plots.
 }
