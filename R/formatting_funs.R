@@ -58,7 +58,6 @@ scale2 <- function(x, na.rm = TRUE){
 #' ptab(cars)
 #'
 #' @export
-# Scale a vector to have mean 0 and SD 1
 ptab <- function(x){
   pander::pandoc.table(x, split.table = Inf)
 }
