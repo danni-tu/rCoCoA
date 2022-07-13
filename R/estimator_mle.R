@@ -125,8 +125,7 @@ get_params_mle <- function(dat_xyz, rescale_zt = FALSE){
     means_zt = apply(dat_xyz2[,-xy_ind], 2, mean)
     sds_zt = apply(dat_xyz2[,-xy_ind], 2, sd)
 
-    dat_xyz2$X <- scale2(dat_xyz2$X)
-    dat_xyz2$Y <- scale2(dat_xyz2$Y)
+    dat_xyz2[,-xy_ind] <- apply(dat_xyz2[,-xy_ind], 2, scale2)
   }
 
   # Optimization without constraints
