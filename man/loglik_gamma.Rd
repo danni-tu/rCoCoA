@@ -17,3 +17,4 @@ The Gamma log-likelihood given the data \code{dat_x} and parameters \code{params
 \description{
 Gamma log-likelihood
 }
+\keyword{internal}

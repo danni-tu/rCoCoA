@@ -16,6 +16,7 @@
 #'
 #' @return The log-likelihood value multiplied by -1.
 #'
+#' @export
 #'
 loglik <- function(params = c(0, 0, 1, 1, 0.1, 0.1, 0.1), dat_xyz){
 
@@ -85,8 +86,6 @@ loglik <- function(params = c(0, 0, 1, 1, 0.1, 0.1, 0.1), dat_xyz){
 #'
 #' @param dat_xyz a data frame containing the columns X, Y, Z, T, ... in that order
 #' @param rescale_zt a logical value indicating if the conditional correlation model covariates Z, T, ... should be rescaled (z-scored)
-#'
-#' @importFrom dplyr mutate
 #'
 #' @return A list containing \code{params}, a numeric matrix of the estimated parameters, \code{out2}, a table of the estimated parameters,
 #' and \code{runtime}, the runtime of the optimization routine.

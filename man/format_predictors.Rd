@@ -14,6 +14,7 @@ Format data into longer format
 }
 \details{
 Given a data frame \code{dat_xyz}, reformat it so that there is 1 row for each X and 1 row for each Y observation per person.
-Note: this function is an adapted version of the form() function from the LiquidAssociation package; see
+Note: this function is an adapted version of the \code{form} function from the LiquidAssociation package; see
 \url{https://www.bioconductor.org/packages/release/bioc/html/LiquidAssociation.html}.
 }
+\keyword{internal}

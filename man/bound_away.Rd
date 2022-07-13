@@ -2,19 +2,22 @@
 % Please edit documentation in R/estimator_cop.R
 \name{bound_away}
 \alias{bound_away}
-\title{Bound values away from overly large and small values}
+\title{Bound values in [-1,1] away from -1, 0, and 1}
 \usage{
 bound_away(x)
 }
 \arguments{
-\item{x}{a numeric value}
+\item{x}{a numeric vector with elements in [-1,1].}
 }
 \value{
 The bounded value.
 }
 \description{
-Bound values away from overly large and small values
+Bound values in [-1,1] away from -1, 0, and 1
 }
-\details{
-Bounds the value \code{x} away from
+\examples{
+linkfun_tanh(1) #Inf
+linkfun_tanh(bound_away(1))
+
 }
+\keyword{internal}

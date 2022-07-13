@@ -13,27 +13,27 @@ NULL
 
 ##' @rdname link_funs
 ##' @examples
-##' tanh(3)
-##' @export
-linkinv_tanh <- function(eta){
-  (exp(eta) - 1)/(exp(eta) + 1)
-}
-
-##' @rdname link_funs
-##' @examples
-##' atanh(0.5)
+##' linkfun_tanh(0.5)
 ##' @export
 linkfun_tanh <- function(p){
   log((1+p)/(1-p))
 }
 
 ##' @rdname link_funs
+##' @examples
+##' linkinv_tanh(3)
 ##' @export
-linkinv_identity <- function(eta){eta}
+linkinv_tanh <- function(eta){
+  (exp(eta) - 1)/(exp(eta) + 1)
+}
 
 ##' @rdname link_funs
 ##' @export
 linkfun_identity <- function(p){p}
+
+##' @rdname link_funs
+##' @export
+linkinv_identity <- function(eta){eta}
 
 ##' @rdname link_funs
 ##' @export
@@ -95,8 +95,6 @@ linkinv_cloglog <- function(eta){
 #' For plots/tables, get the name of the link function.
 #'
 #' @param str character of the link function
-#'
-#' @importFrom dplyr recode_factor
 #'
 #' @examples
 #' ptab(cars)

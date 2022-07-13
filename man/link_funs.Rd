@@ -2,10 +2,10 @@
 % Please edit documentation in R/link_funs.R
 \name{link_funs}
 \alias{link_funs}
-\alias{linkinv_tanh}
 \alias{linkfun_tanh}
-\alias{linkinv_identity}
+\alias{linkinv_tanh}
 \alias{linkfun_identity}
+\alias{linkinv_identity}
 \alias{linkfun_tid}
 \alias{linkinv_tid}
 \alias{linkfun_logit}
@@ -16,13 +16,13 @@
 \alias{linkinv_cloglog}
 \title{Link and inverse link functions for the correlation model.}
 \usage{
-linkinv_tanh(eta)
-
 linkfun_tanh(p)
 
-linkinv_identity(eta)
+linkinv_tanh(eta)
 
 linkfun_identity(p)
+
+linkinv_identity(eta)
 
 linkfun_tid(p)
 
@@ -41,9 +41,9 @@ linkfun_cloglog(p)
 linkinv_cloglog(eta)
 }
 \arguments{
-\item{eta}{a numeric value corresponding to the linear predictor, generally taking values in (-Inf, Inf).}
-
 \item{p}{a numeric value corresponding to the outcome (correlation), taking values in (0,1) for \code{logit}, \code{probit}; or (-1,1) for \code{tanh}.}
+
+\item{eta}{a numeric value corresponding to the linear predictor, generally taking values in (-Inf, Inf).}
 }
 \description{
 Link and inverse link functions for the correlation model.
@@ -53,6 +53,6 @@ Link functions are defined according to the C++ source code in geepack \url{http
 Both \code{linkfun_tid()} and \code{linkinv_tid()} correspond to the truncated identity link.
 }
 \examples{
-tanh(3)
-atanh(0.5)
+linkfun_tanh(0.5)
+linkinv_tanh(3)
 }

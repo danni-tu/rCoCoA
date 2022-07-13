@@ -22,3 +22,4 @@ round(0.100, digits = 2)
 round2(0.100, digits = 2)
 
 }
+\keyword{internal}

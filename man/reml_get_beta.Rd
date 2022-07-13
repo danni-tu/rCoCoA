@@ -21,3 +21,4 @@ Estimate mean parameters from the REML likelihood
 Given an estimate of the variance and correlation parameters, estimate the mean parameters using
 restricted maximum likelihood.
 }
+\keyword{internal}

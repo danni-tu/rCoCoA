@@ -9,6 +9,9 @@
 #' @param rho the correlation between X and Y
 #'
 #' @return A 2 by 2 numeric matrix.
+#'
+#' @keywords internal
+#'
 make_sigma <- function(sd_x, sd_y, rho){
   matrix(c(sd_x^2, sd_x*sd_y*rho, sd_x*sd_y*rho, sd_y^2),
          nrow = 2, byrow = TRUE)
@@ -17,10 +20,12 @@ make_sigma <- function(sd_x, sd_y, rho){
 #' @title Format data into longer format
 #'
 #' @details Given a data frame \code{dat_xyz}, reformat it so that there is 1 row for each X and 1 row for each Y observation per person.
-#' Note: this function is an adapted version of the form() function from the LiquidAssociation package; see
+#' Note: this function is an adapted version of the \code{form} function from the LiquidAssociation package; see
 #' \url{https://www.bioconductor.org/packages/release/bioc/html/LiquidAssociation.html}.
 #'
 #' @param dat_xyz a data frame with columns containing observations of X, Y, ... (in that order)
+#'
+#' @keywords internal
 #'
 format_predictors <- function(dat_xyz) {
   # Set number of samples = number of rows
@@ -79,10 +84,10 @@ format_predictors <- function(dat_xyz) {
 #' @param params a numeric vector of the form \code{(mu_x, mu_y, sd_x, sd_y, alpha, beta, ...)} in that order
 #' @param dat_xyz a data frame containing the columns X, Y, Z, T, ... in that order
 #'
-#' @importFrom Matrix bdiag
-#' @import templateICAr
 #'
 #' @return The restricted log-likelihood value multiplied by -1.
+#'
+#' @export
 #'
 loglik_reml <- function(params, dat_xyz){
 
@@ -159,10 +164,9 @@ loglik_reml <- function(params, dat_xyz){
 #' @param pars a numeric vector containing the standard deviation of X and Y, followed by the conditional correlation parameters
 #' @param dat_xyz a data frame containing observations of X, Y, Z, ... in that order
 #'
-#' @importFrom purrr map
-#' @import templateICAr
-#'
 #' @return A numeric vector of the REML estimates of the mean parameters.
+#'
+#' @keywords internal
 #'
 reml_get_beta <- function(pars, dat_xyz){
   # REML likelihood
@@ -220,8 +224,6 @@ reml_get_beta <- function(pars, dat_xyz){
 #' @param rescale_zt a logical value indicating if the conditional correlation model covariates Z, T, ... should be rescaled (z-scored)
 #' @param optim_type a character value. If \code{optim_type = "optim"}, the usual \code{optim} optimization routine is used.
 #' Otherwise the "Rvmmin" method from the optimr package is used.
-#'
-#' @importFrom optimr optimr
 #'
 #' @return A list containing \code{params}, a numeric matrix of the estimated parameters, \code{out2}, a table of the estimated parameters,
 #' \code{runtime}, the runtime of the optimization routine, and \code{loglik}, the value of the final restricted log-likelihood.
@@ -286,7 +288,7 @@ get_params_reml <- function(dat_xyz, init_mle = TRUE, rescale_zt = FALSE, optim_
     ll = 1*(opt$value)
   } else {
     # Use optimr, which is faster but may be less good at finding the global maximum.
-    opt = optimr(par=start_vals, loglik_reml, dat_xyz = dat_xyz2,
+    opt = optimr::optimr(par=start_vals, loglik_reml, dat_xyz = dat_xyz2,
                  # Letting bounds be 0 gives convergence errors
                  method="Rvmmin", lower=c(1e-3, 1e-3, rep(-5, p)), upper=c(Inf, Inf, rep(5, p)), hessian = TRUE,
                  control = list(maximize = TRUE))

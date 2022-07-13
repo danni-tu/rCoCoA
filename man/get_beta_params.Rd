@@ -15,3 +15,4 @@ The maximum likelihood estimates of the Beta parameters given the data \code{dat
 \description{
 Beta maximum likelihood estimator
 }
+\keyword{internal}

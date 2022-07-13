@@ -46,9 +46,9 @@ dat_xyz = data.frame(X = X_t, Y = Y_t)
 dat_xyz = cbind(dat_xyz, dat_zt0)
 
 # If the marginal distributions are knonw, but arams unknown, estimate with MLE
-mle_x = rCoCoA:::get_gamma_params(dat_x = X_t)
+mle_x = get_gamma_params(dat_x = X_t)
 F_x = function(p) pgamma(p, shape=mle_x[1],  rate=mle_x[2])
-mle_y = rCoCoA:::get_beta_params(dat_x = Y_t)
+mle_y = get_beta_params(dat_x = Y_t)
 F_y = function(p) pbeta(p,shape1 = mle_y[1], shape2 = mle_y[1])
 dat_xyz = gcop_transform2(dat_xyz, F_x = F_x, F_y = F_y)
 

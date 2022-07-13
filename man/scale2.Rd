@@ -21,3 +21,4 @@ Linearly rescale a vector to have mean = 0 and sd = 1.
 scale2(1:10, na.rm = TRUE)
 
 }
+\keyword{internal}

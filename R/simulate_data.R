@@ -14,9 +14,6 @@
 #' @param sd_y standard deviation of Y
 #' @param cor_link character vector corresponding to the correlation link function (default = "tanh")
 #'
-#' @importFrom MASS mvrnorm
-#' @importFrom purrr rbernoulli
-#'
 #' @return Generated X and Y values based on the multivariate Gaussian model.
 #'
 #' @examples
@@ -87,8 +84,6 @@ sim_xy2_mvn <- function(theta0, dat_zt0, mu_x = 0, mu_y = 0, sd_x = 1, sd_y = 1,
 #' @param theta0 numeric vector of true parameters
 #' @param dat_zt0 data.frame containing observations of Z and T
 #' @param cor_link character vector corresponding to the correlation link function (default = "tanh")
-#'
-#' @importFrom copula normalCopula mvdc rMvdc
 #'
 #' @return Generated X and Y values based on the copula model.
 #'
@@ -168,8 +163,6 @@ sim_xy2_cop <- function(theta0, dat_zt0, cor_link = "tanh"){
 #' @param gamma numeric parameter in copula model (see details)
 #' @param delta numeric parameter in copula model (see details)
 #' @param cor_link character vector corresponding to the correlation link function (default = "tanh")
-#'
-#' @importFrom purrr rbernoulli
 #'
 #' @return A numeric matrix containing the model parameters corresponding to the Pearson correlation model.
 #'

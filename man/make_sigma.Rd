@@ -23,3 +23,4 @@ Construct a 2 by 2 covariance matrix
 Given variables X and Y, construct the covariance matrix of (X,Y) using
 their standard deviations \code{sd_x, sd_y} and correlation \code{rho}.
 }
+\keyword{internal}

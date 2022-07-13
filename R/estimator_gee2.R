@@ -26,10 +26,6 @@
 #' @param cor_link a character string indicating the correlation model link function; passed on to \code{geese()}
 #' @param sca_link a character string indicating the scale model link function; passed on to \code{geese()}
 #'
-#' @importFrom geepack geese geese.control
-#' @importFrom dplyr filter mutate_if mutate select
-#' @importFrom tibble rownames_to_column
-#'
 #' @return A list containing \code{params}, a numeric matrix of the estimated parameters, \code{out2}, a table of the estimated parameters,
 #' \code{runtime}, the runtime of the optimization routine.
 #'

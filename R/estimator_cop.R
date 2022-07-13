@@ -1,14 +1,28 @@
 
-#' @title Bound values away from overly large and small values
+#' @title Bound values in [-1,1] away from -1, 0, and 1
 #'
-#' @details Bounds the value \code{x} away from
-#'
-#' @param x a numeric value
+#' @param x a numeric vector with elements in [-1,1].
 #'
 #' @return The bounded value.
+#'
+#' @examples
+#' linkfun_tanh(1) #Inf
+#' linkfun_tanh(bound_away(1))
+#'
+#' @keywords internal
+#'
 bound_away <- function(x){
-  out = pmax(x, .Machine$double.eps)
-  out = pmin(out, 1 - .Machine$double.eps)
+  ind_pos = which(x >= 0)
+  ind_neg = which(x < 0)
+  out = x
+
+  # x in [0,1]
+  out[ind_pos] = pmax(x[ind_pos], .Machine$double.eps)
+  out[ind_pos]= pmin(out[ind_pos], 1 - .Machine$double.eps)
+  # x in [-1, 0)
+  out[ind_neg] = pmin(x[ind_neg], -1*.Machine$double.eps)
+  out[ind_neg]= pmax(out[ind_neg], -1 + .Machine$double.eps)
+
   return(out)
 }
 
@@ -19,6 +33,8 @@ bound_away <- function(x){
 #'
 #' @return The Beta log-likelihood given the data \code{dat_x} and parameters \code{params}.
 #'
+#' @keywords internal
+#'
 loglik_beta <- function(params = c(1,1), dat_x){
   sum(log(dbeta(dat_x, shape1 = params[1], shape2 = params[2])))
 }
@@ -28,6 +44,8 @@ loglik_beta <- function(params = c(1,1), dat_x){
 #' @param dat_x a numeric vector of observations
 #'
 #' @return The maximum likelihood estimates of the Beta parameters given the data \code{dat_x}.
+#'
+#' @keywords internal
 #'
 get_beta_params <- function(dat_x){
   opt = optim(par = c(1,1),
@@ -49,6 +67,8 @@ get_beta_params <- function(dat_x){
 #'
 #' @return The Gamma log-likelihood given the data \code{dat_x} and parameters \code{params}.
 #'
+#' @keywords internal
+#'
 loglik_gamma <- function(params = c(1,1), dat_x){
   sum(log(dgamma(dat_x, shape = params[1], rate = params[2])))
 }
@@ -58,6 +78,8 @@ loglik_gamma <- function(params = c(1,1), dat_x){
 #' @param dat_x a numeric vector of observations
 #'
 #' @return The maximum likelihood estimates of the Gamma parameters given the data \code{dat_x}.
+#'
+#' @keywords internal
 #'
 get_gamma_params <- function(dat_x){
 
@@ -109,9 +131,9 @@ get_gamma_params <- function(dat_x){
 #' dat_xyz = cbind(dat_xyz, dat_zt0)
 #'
 #' # If the marginal distributions are knonw, but arams unknown, estimate with MLE
-#' mle_x = rCoCoA:::get_gamma_params(dat_x = X_t)
+#' mle_x = get_gamma_params(dat_x = X_t)
 #' F_x = function(p) pgamma(p, shape=mle_x[1],  rate=mle_x[2])
-#' mle_y = rCoCoA:::get_beta_params(dat_x = Y_t)
+#' mle_y = get_beta_params(dat_x = Y_t)
 #' F_y = function(p) pbeta(p,shape1 = mle_y[1], shape2 = mle_y[1])
 #' dat_xyz = gcop_transform2(dat_xyz, F_x = F_x, F_y = F_y)
 #'

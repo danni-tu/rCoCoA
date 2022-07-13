@@ -24,7 +24,9 @@ nl <- function(){
 #' round(0.100, digits = 2)
 #' round2(0.100, digits = 2)
 #'
-#' @export
+#' @keywords internal
+#'
+
 round2 <- function(x, digits){
   format(round(x, digits), nsmall = digits)
 }
@@ -41,7 +43,8 @@ round2 <- function(x, digits){
 #' @examples
 #' scale2(1:10, na.rm = TRUE)
 #'
-#' @export
+#' @keywords internal
+#'
 scale2 <- function(x, na.rm = TRUE){
   (x - mean(x, na.rm = na.rm)) / sd(x, na.rm)
 }
@@ -52,12 +55,11 @@ scale2 <- function(x, na.rm = TRUE){
 #'
 #' @param x a data.frame
 #'
-#' @importFrom pander pandoc.table
-#'
 #' @examples
 #' ptab(cars)
 #'
-#' @export
+#' @keywords internal
+#'
 ptab <- function(x){
   pander::pandoc.table(x, split.table = Inf)
 }

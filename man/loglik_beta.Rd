@@ -17,3 +17,4 @@ The Beta log-likelihood given the data \code{dat_x} and parameters \code{params}
 \description{
 Beta log-likelihood
 }
+\keyword{internal}

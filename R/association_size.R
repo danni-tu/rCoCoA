@@ -8,8 +8,6 @@
 #' @param params a numeric vector containing the estimated correlation parameters in the CoCoA model
 #' @param dat5 a data frame containing only the covariates in the correlation model (i.e., excluding X and Y)
 #'
-#' @importFrom dplyr mutate
-#'
 #' @return A numeric vector containing the marginal and conditional association sizes.
 #'
 #' @examples
@@ -28,6 +26,7 @@
 #' effect_bin_emp(params = c(0.5, 0.2, 0.5, 0.4), dat5 = dat_zt0)
 #'
 #' @export
+#'
 effect_bin_emp <- function(params, dat5){
 
   n_p = length(params)
@@ -85,6 +84,7 @@ effect_bin_emp <- function(params, dat5){
 #' effect_cont_emp(params = c(0.5, 0.2, 0.5), dat5 = dat_zt0)
 #'
 #' @export
+#'
 effect_cont_emp <- function(params, dat5){
   n_p = length(params)
   params2 = matrix(params, ncol = 1)

@@ -15,3 +15,4 @@ The maximum likelihood estimates of the Gamma parameters given the data \code{da
 \description{
 Gamma maximum likelihood estimator
 }
+\keyword{internal}

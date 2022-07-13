@@ -16,3 +16,4 @@ This is a wrapper around pandoc.table() that ensures all output will be printed 
 ptab(cars)
 
 }
+\keyword{internal}
